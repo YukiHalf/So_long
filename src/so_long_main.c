@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:41:15 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/04 18:42:06 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/05 16:14:30 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,21 @@ void	init_map(t_map *map)
 	map->cols = 0;
 	map->rows = 0;
 	map->map_grid = NULL;
+	map->collectible_count = 0;
+	map->exit_count = 0;
+	map->player_count = 0;
+	map->player_x = -1;
+	map->player_y = -1;
 }
 
 static t_map 	*parse_input(char *filename)
 {
 	int fd;
 	t_map	*map;
+
 	fd = open(filename,O_RDONLY,0777);
 	if(fd == -1)
-	display_error(FILE_ERROR,1);
+		display_error(FILE_ERROR,1);
 	map = malloc(sizeof(t_map));
 	if(!map)
 	{
@@ -76,7 +82,7 @@ static t_so_long *init_so_long(char *filename)
 			display_error(mlx_strerror(mlx_errno),1);
 		}
 		so_long.image = mlx_new_image(so_long.mlx,WIDTH,HEIGHT);
-		if(so_long.image)
+		if(!so_long.image)
 		{
 			free_map(so_long.map);
 			mlx_close_window(so_long.mlx);
@@ -92,6 +98,7 @@ int main(int argc,char **argv)
  	if(!ValidFilename(argv[1]) || argc != 2)
 		display_error(FORMAT,1);
 	so_long = init_so_long(argv[1]);
-
+	mlx_loop(so_long->mlx);
+	return 0;
 
 }

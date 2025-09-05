@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/04 18:16:56 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/05 16:42:37 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,58 @@ void wall_check(t_map *map)
 		}
 		i++;
 	}
+}
+
+char **create_temp_map(t_map *map)
+{
+	char **temp_map;
+	int i;
+	int j;
+	temp_map = malloc(sizeof(char *) * map->rows);
+	if(!temp_map)
+		display_error(MALLOC,1);
+	i = -1;
+	while(++i < map->rows)
+	{
+		temp_map[i] = malloc(sizeof(char) * (map->cols + 1));
+		if(!map->map_grid[i])
+		{
+			while(--i >= 0)
+				free(map->map_grid[i]);
+			free(map->map_grid);
+			display_error(MALLOC,1);
+		}
+	j = -1;
+	while(++j < map->cols)
+		temp_map[i][j] = map->map_grid[i][j];
+	temp_map[i][j] = '0';
+	}
+return temp_map;
+}
+
+int		path_check(t_map *map)
+{
+	char **temp_map;
+	int collectibles_found = 0;
+	int exit_reachable;
+	int i;
+	int j;
+
+	if(map->player_x == -1 || map->player_y = -1)
+		return 0;
+	temp_map = create_temp_map(map);
+	flood_fill(temp_map, map->player_x, map->player_count,
+				map->rows, map->cols , &collectibles_found);
+	i = -1;
+	while(++i < map->rows && !exit_reachable)
+	{
+		j = -1;
+		while(++j < map->cols && !exit_reachable)
+		{
+			if(map->map_grid[i][j] == 'E' && temp_map[i][j] = 'V')
+				exit_reachable;
+		}
+	}
+	free2d(temp_map);
+	return(collectibles_found == map ->collectible_count && exit_reachable);
 }

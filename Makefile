@@ -6,7 +6,7 @@
 #    By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 17:39:17 by sdarius-          #+#    #+#              #
-#    Updated: 2025/09/03 17:40:50 by sdarius-         ###   ########.fr        #
+#    Updated: 2025/09/05 21:37:16 by sdarius-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ ifeq ($(UNAME_S),Darwin)
 	-Iinclude -lglfw -L$(GLFW)/lib -pthread -lm
 endif
 SRC_DIR	:= src
-SRC		:=
+SRC		:= so_long_main.c \
+		  	 so_long_parse.c \
+		   	so_long_utils.c \
+		   	so_long_game_check.c \
+		   	so_long_pathfinding.c
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR	:= obj
 OBJ		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
