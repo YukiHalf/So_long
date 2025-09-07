@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 16:36:51 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/05 16:47:55 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:58:19 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ void flood_fill(char **temp_map,int x,int y, int rows, int cols, int *collectibl
     temp_map[y][x] == '1' || temp_map[y][x] == 'V')
     return;
   if(temp_map[y][x] == 'C')
-    (*collectibles_found) ++;
+    (*collectibles_found)++;
   temp_map[y][x] = 'V';
     flood_fill(temp_map,x + 1,y,rows,cols,collectibles_found);
     flood_fill(temp_map,x - 1,y,rows,cols,collectibles_found);
     flood_fill(temp_map,x,y + 1,rows,cols,collectibles_found);
     flood_fill(temp_map,x,y - 1,rows,cols,collectibles_found);
-
-
-
-
 }

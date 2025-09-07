@@ -6,12 +6,12 @@
 #    By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 17:39:17 by sdarius-          #+#    #+#              #
-#    Updated: 2025/09/05 21:37:16 by sdarius-         ###   ########.fr        #
+#    Updated: 2025/09/07 15:49:04 by sdarius-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:= cc
-CFLAGS	:=  -Wunreachable-code -O3 -ffast-math
+CFLAGS	:= -Wall -Wextra -Werror -g -Wunreachable-code -O3 -ffast-math
 MLX_DIR		:= ./lib/MLX42
 MLX		:= $(MLX_DIR)/build/libmlx42.a
 LIBFT_DIR	:= ./lib/libft
@@ -27,11 +27,17 @@ ifeq ($(UNAME_S),Darwin)
 	-Iinclude -lglfw -L$(GLFW)/lib -pthread -lm
 endif
 SRC_DIR	:= src
-SRC		:= so_long_main.c \
-		  	 so_long_parse.c \
-		   	so_long_utils.c \
-		   	so_long_game_check.c \
-		   	so_long_pathfinding.c
+SRC		:= so_long_draw.c \
+			so_long_game_check.c \
+			so_long_game_init.c \
+			so_long_game_input.c \
+			so_long_game_render_main.c \
+			so_long_main.c \
+			so_long_movement.c \
+			so_long_parse.c \
+			so_long_pathfind.c \
+			so_long_render.c \
+			so_long_utils.c \
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR	:= obj
 OBJ		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
@@ -58,7 +64,7 @@ $(OBJ_DIR):
 $(NAME): $(MLX) $(LIBFT) $(OBJ_DIR) $(OBJ)
 	$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c inc/fdf.h
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c inc/so_long.h
 	$(CC) -c $(CFLAGS) $< -o $@ $(HEADERS)
 
 clean:

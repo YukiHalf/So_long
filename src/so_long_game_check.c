@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/05 16:42:37 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/06 20:05:24 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void map_check(t_map *map)
 		display_error(INVALID_MAP,1);
 	if(map->rows < 3 || map->cols < 3)
 		display_error("Map to small (minimum 3x3)",1);
-	wall_check(map);
+	walls_check(map);
 	elements_check(map);
 	if(!path_check(map))
 		display_error("No valid path to exit or collectibles",1);
@@ -34,7 +34,7 @@ void elements_check(t_map *map)
         display_error("Map must have at least one collectible (C)", 1);
 }
 
-void wall_check(t_map *map)
+void walls_check(t_map *map)
 {
 	int i;
 	int j;
@@ -45,9 +45,9 @@ void wall_check(t_map *map)
 		j = 0;
 		while(j < map->cols)
 		{
-			if((i = 0 || i = map->rows - 1 )map->map_grid[i][j] != '1')
+			if((i == 0 || i == map->rows - 1 ) && map->map_grid[i][j] != '1')
 			display_error("Map must be surrounded by walls", 1);
-			if((j = 0 || j = map->cols - 1 )map->map_grid[i][j] != '1')
+			if((j == 0 || j == map->cols - 1 ) && map->map_grid[i][j] != '1')
 			display_error("Map must be surrounded by walls", 1);
 			j++;
 		}
@@ -90,7 +90,7 @@ int		path_check(t_map *map)
 	int i;
 	int j;
 
-	if(map->player_x == -1 || map->player_y = -1)
+	if(map->player_x == -1 || map->player_y == -1)
 		return 0;
 	temp_map = create_temp_map(map);
 	flood_fill(temp_map, map->player_x, map->player_count,
@@ -101,8 +101,8 @@ int		path_check(t_map *map)
 		j = -1;
 		while(++j < map->cols && !exit_reachable)
 		{
-			if(map->map_grid[i][j] == 'E' && temp_map[i][j] = 'V')
-				exit_reachable;
+			if(map->map_grid[i][j] == 'E' && temp_map[i][j] == 'V')
+				exit_reachable = 1;
 		}
 	}
 	free2d(temp_map);

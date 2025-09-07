@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:42:31 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/05 21:40:06 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/06 20:05:54 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-int 	get_cols(int fd,t_map *map,char *line)
+int 	get_cols(char *line)
 {
 	char *temp;
 	int i;
@@ -34,7 +34,7 @@ void 	get_dimensions(int fd,t_map *map)
 	line = get_next_line(fd);
 	if(!line)
 		display_error(INVALID_MAP,1);
-	map->cols = get_cols(fd,map,line);
+	map->cols = get_cols(line);
 	map->rows = 1;
 	free(line);
 	if(map->cols == 0)
@@ -44,7 +44,7 @@ void 	get_dimensions(int fd,t_map *map)
 		line = get_next_line(fd);
 		if(!line)
 			break;
-		if(map->cols != get_cols(fd,maps,line))
+		if(map->cols != get_cols(line))
 			{
 				free(line);
 				display_error(INVALID_MAP,1);
@@ -61,7 +61,7 @@ void	parse_map(int fd,t_map *map)
 	char *line;
 
 	i = -1;
-	while(i++ < map->rows)
+	while(++i < map->rows)
 	{
 		line = get_next_line(fd);
 		if(!line)
@@ -69,14 +69,16 @@ void	parse_map(int fd,t_map *map)
 		j = 0;
 		while(line[j] && line[j] != '\n')
 		{
-		if(!ValidElements)
+		if(!ValidElements(line[j]))
 			display_error(INVALID_MAP,1);
 			if(line[j] != ' ')
 			{
-				map->map_grid[i][j] = ft_atoi(line[j]);
+				parse_count_map(map,line[j],j,i);
+				map->map_grid[i][j] = line[j];
 			}
 		j++;
 		}
 		free(line);
 	}
+	map_check(map);
 }
