@@ -23,12 +23,32 @@
 # define FILE_ERROR "Unable to open file"
 
 #define TILE_SIZE 32
+#define IMG_PXL 32
 #define COLOR_WALL    0xFF0000FF   // Red
 #define COLOR_FLOOR   0x808080FF   // Gray
 #define COLOR_PLAYER  0x00FF00FF   // Green
 #define COLOR_COLLECT 0xFFFF00FF   // Yellow
 #define COLOR_EXIT    0x0000FFFF   // Blue
 #define COLOR_BORDER  0x000000FF
+
+typedef struct s_player
+{
+	void 	*idle;
+	void 	*up;
+	void 	*down;
+	void 	*left;
+	void 	*right;
+}	t_player;
+
+
+typedef struct  s_sprites
+{
+	void	 *wall;
+	void	 *floor;
+	t_player 	 *player;
+	void	 *collectible;
+	void 	 *exit;
+}	t_sprites;
 
 typedef struct s_map
 {
@@ -47,6 +67,7 @@ typedef struct s_so_long
   	 mlx_t  		*mlx;
   	 t_map   		*map;
 	 mlx_image_t	*image;
+	 t_sprites		sprites;
 	 int moves;
  	 int collected;
   	 int game_won;
