@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:55:12 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 15:08:33 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:37:17 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	update_player_position(t_so_long *game, int new_x,int new_y)
 int 	move_player(t_so_long *game, int new_x, int new_y)
 {
 	char target;
-
+// In your move_player function, add:
+printf("Attempting move to (%d, %d)\n", new_x, new_y);
 	target = game->map->map_grid[new_y][new_x];
 	if(!is_valid_position(game,new_x,new_y))
 		return 0;

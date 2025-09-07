@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:42:02 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 15:45:53 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:38:13 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	render_game(t_so_long *game)
 	int y;
 	char tile;
 	uint32_t color;
-
+// In your render_game function, add:
+printf("Rendering game...\n");
 	y = 0;
-	while(y < game->image->height)
+	while((uint32_t)y < game->image->height)
 	{
 		x = 0;
-		while(x < game->image->width)
+		while((uint32_t)x < game->image->width)
 		{
 			mlx_put_pixel(game->image ,x ,y , COLOR_BORDER);
 			x++;

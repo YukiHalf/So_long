@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:41:15 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 14:38:14 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:26:46 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int main(int argc,char **argv)
 	so_long = init_so_long(argv[1]);
 
 	setup_game(so_long);
-
 	mlx_loop(so_long->mlx);
 	return 0;
 

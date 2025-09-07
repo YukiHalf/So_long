@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_init_game.c                                :+:      :+:    :+:   */
+/*   so_long_game_init.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:14:38 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 14:37:25 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:21:35 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	clear_image_black(t_so_long *game)
 	int	y;
 
 	y = 0;
-	while (y < game->image->height)
+	while ((uint32_t)y < game->image->height)
 	{
 		x = 0;
-		while (x < game->image->width)
+		while ((uint32_t)x < game->image->width)
 		{
 			mlx_put_pixel(game->image, x, y, 0x000000FF);
 			x++;

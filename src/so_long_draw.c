@@ -14,5 +14,5 @@
 
 void draw_map(t_map *map)
 {
-  
+	(void)map;
 }

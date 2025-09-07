@@ -10,8 +10,8 @@
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 
 
-# define HEIGHT 1920
-# define WIDTH 1080
+# define HEIGHT 1080
+# define WIDTH 1920
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
@@ -80,6 +80,7 @@ void handle_input(mlx_key_data_t keydata, void *param);
 int  move_player(t_so_long *game, int new_x, int new_y);
 void render_game(t_so_long *game);
 void draw_tile(t_so_long *game, int x, int y, uint32_t color);
-
+uint32_t get_tile_color(char tile);
+void	clear_entire_image(t_so_long *game);
 
 #endif
