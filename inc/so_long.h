@@ -24,12 +24,7 @@
 
 #define TILE_SIZE 32
 #define IMG_PXL 32
-#define COLOR_WALL    0xFF0000FF   // Red
-#define COLOR_FLOOR   0x808080FF   // Gray
-#define COLOR_PLAYER  0x00FF00FF   // Green
-#define COLOR_COLLECT 0xFFFF00FF   // Yellow
-#define COLOR_EXIT    0x0000FFFF   // Blue
-#define COLOR_BORDER  0x000000FF
+
 
 typedef struct s_player
 {
@@ -38,6 +33,7 @@ typedef struct s_player
 	void 	*down;
 	void 	*left;
 	void 	*right;
+	char 	direction;
 }	t_player;
 
 
@@ -48,6 +44,7 @@ typedef struct  s_sprites
 	t_player 	 *player;
 	void	 *collectible;
 	void 	 *exit;
+	void	 *exit_open;
 }	t_sprites;
 
 typedef struct s_map
@@ -99,9 +96,26 @@ void free_map(t_map *map);
 void setup_game(t_so_long *so_long);
 void handle_input(mlx_key_data_t keydata, void *param);
 int  move_player(t_so_long *game, int new_x, int new_y);
-void render_game(t_so_long *game);
-void draw_tile(t_so_long *game, int x, int y, uint32_t color);
-uint32_t get_tile_color(char tile);
 void	clear_entire_image(t_so_long *game);
 
+// Sprite loading functions
+void	*load_png_safe(mlx_t *mlx, char *path);
+int		load_basic_sprites(t_so_long *game);
+int		load_special_sprites(t_so_long *game);
+int		validate_all_sprites(t_so_long *game);
+void	load_sprites(t_so_long *game);
+
+// Sprite rendering functions
+mlx_image_t	*get_tile_sprite(t_so_long *game, char tile);
+void	draw_sprite_at_cords(t_so_long *game, mlx_image_t *sprite, int map_x, int map_y);
+void	render_background(t_so_long *game);
+void	render_game_objects(t_so_long *game);
+void	render_game(t_so_long *game);
+void	render_player_only(t_so_long *game);
+void	initial_render(t_so_long *game);
+
+mlx_image_t *get_player_direction(t_so_long *game);
+void	render_collectibles_only(t_so_long *game);
+void	render_player_only(t_so_long *game);
+void	clear_player_sprites(t_so_long *game);
 #endif

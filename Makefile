@@ -36,7 +36,9 @@ SRC		:=	so_long_main.c \
 			so_long_parse.c \
 			so_long_pathfind.c \
 			so_long_render.c \
-			so_long_utils.c
+			so_long_utils.c \
+			so_long_sprite_load.c \
+			sprite_render.c
 SRCS	:= $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR	:= obj
 OBJ		:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))

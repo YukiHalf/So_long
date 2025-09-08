@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:39:49 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 16:44:42 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:08:58 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,20 @@ void 	handle_movement_input(mlx_key_data_t keydata, t_so_long *game)
 
 	if(!get_new_position(keydata,&new_x,&new_y,game))
 		return;
+	if(game->map->player_x < new_x)
+	game->sprites.player->direction = 'R';
+	if(game->map->player_x > new_x)
+	game->sprites.player->direction ='L';
+	if(game->map->player_y > new_y)
+	game->sprites.player->direction ='U';
+	if(game->map->player_y < new_y)
+	game->sprites.player->direction = 'D';
 	if(move_player(game,new_x,new_y))
 		handle_good_move(game);
 }
 
 void	handle_input(mlx_key_data_t keydata, void *param)
 {
-	// In your handle_input function, add:
 printf("Key pressed: %d\n", keydata.key);
 	t_so_long *game;
 	game = (t_so_long *)param;
