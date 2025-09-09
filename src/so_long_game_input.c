@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:39:49 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/08 21:08:58 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:08:31 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int get_new_position(mlx_key_data_t keydata, int *new_x, int *new_y, t_so_long *
 	return 1;
 }
 
+
+void	handle_quit_input(t_so_long *game)
+{
+	if(game->game_won == 0)
+	printf("Game quit by user\n");
+	mlx_close_window(game->mlx);
+}
+
 void 	handle_good_move(t_so_long *game)
 {
 	game->moves++;
@@ -36,15 +44,11 @@ void 	handle_good_move(t_so_long *game)
 	game->moves,game->collected,game->map->collectible_count);
 	render_game(game);
 	if(game->game_won)
-		printf("you won in %d moves! Press ESC to quit.\n", game->moves);
+	{
+		printf("you won in %d moves!\n", game->moves);
+		handle_quit_input(game);
+	}
 }
-
-void	handle_quit_input(t_so_long *game)
-{
-	printf("Game quit by user\n");
-	mlx_close_window(game->mlx);
-}
-
 void 	handle_movement_input(mlx_key_data_t keydata, t_so_long *game)
 {
 	int new_x;

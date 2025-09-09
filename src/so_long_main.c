@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:41:15 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/07 16:26:46 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:47:55 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_so_long *init_so_long(char *filename)
 {
 		static t_so_long	so_long;
 		so_long.map = parse_input(filename);
-		so_long.mlx = mlx_init(WIDTH , HEIGHT , "So Long" , true);
+		so_long.mlx = mlx_init(WIDTH , HEIGHT , "So Long" , false);
 		if(!so_long.mlx)
 		{
 			free_map(so_long.map);
