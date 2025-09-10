@@ -6,105 +6,107 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/06 20:05:24 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:17:04 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void map_check(t_map *map)
+void	map_check(t_map *map)
 {
-	if(!map || !map->map_grid)
-		display_error(INVALID_MAP,1);
-	if(map->rows < 3 || map->cols < 3)
-		display_error("Map to small (minimum 3x3)",1);
+	if (!map || !map->map_grid)
+		display_error(INVALID_MAP, 1);
+	if (map->rows < 3 || map->cols < 3)
+		display_error("Map to small (minimum 3x3)", 1);
 	walls_check(map);
 	elements_check(map);
-	if(!path_check(map))
-		display_error("No valid path to exit or collectibles",1);
+	if (!path_check(map))
+		display_error("No valid path to exit or collectibles", 1);
 }
 
-void elements_check(t_map *map)
+void	elements_check(t_map *map)
 {
 	if (map->player_count != 1)
-        display_error("Map must have exactly one player (P)", 1);
-    if (map->exit_count != 1)
-        display_error("Map must have exactly one exit (E)", 1);
-    if (map->collectible_count < 1)
-        display_error("Map must have at least one collectible (C)", 1);
+		display_error("Map must have exactly one player (P)", 1);
+	if (map->exit_count != 1)
+		display_error("Map must have exactly one exit (E)", 1);
+	if (map->collectible_count < 1)
+		display_error("Map must have at least one collectible (C)", 1);
 }
 
-void walls_check(t_map *map)
+void	walls_check(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(i < map->rows)
+	while (i < map->rows)
 	{
 		j = 0;
-		while(j < map->cols)
+		while (j < map->cols)
 		{
-			if((i == 0 || i == map->rows - 1 ) && map->map_grid[i][j] != '1')
-			display_error("Map must be surrounded by walls", 1);
-			if((j == 0 || j == map->cols - 1 ) && map->map_grid[i][j] != '1')
-			display_error("Map must be surrounded by walls", 1);
+			if ((i == 0 || i == map->rows - 1) && map->map_grid[i][j] != '1')
+				display_error("Map must be surrounded by walls", 1);
+			if ((j == 0 || j == map->cols - 1) && map->map_grid[i][j] != '1')
+				display_error("Map must be surrounded by walls", 1);
 			j++;
 		}
 		i++;
 	}
 }
 
-char **create_temp_map(t_map *map)
+char	**create_temp_map(t_map *map)
 {
-	char **temp_map;
-	int i;
-	int j;
+	char	**temp_map;
+	int		i;
+	int		j;
+
 	temp_map = malloc(sizeof(char *) * map->rows);
-	if(!temp_map)
-		display_error(MALLOC,1);
+	if (!temp_map)
+		display_error(MALLOC, 1);
 	i = -1;
-	while(++i < map->rows)
+	while (++i < map->rows)
 	{
 		temp_map[i] = malloc(sizeof(char) * (map->cols + 1));
-		if(!map->map_grid[i])
+		if (!map->map_grid[i])
 		{
-			while(--i >= 0)
+			while (--i >= 0)
 				free(map->map_grid[i]);
 			free(map->map_grid);
-			display_error(MALLOC,1);
+			display_error(MALLOC, 1);
 		}
-	j = -1;
-	while(++j < map->cols)
-		temp_map[i][j] = map->map_grid[i][j];
-	temp_map[i][j] = '0';
+		j = -1;
+		while (++j < map->cols)
+			temp_map[i][j] = map->map_grid[i][j];
+		temp_map[i][j] = '0';
 	}
-return temp_map;
+	return (temp_map);
 }
 
-int		path_check(t_map *map)
+int	path_check(t_map *map)
 {
-	char **temp_map;
-	int collectibles_found = 0;
-	int exit_reachable;
-	int i;
-	int j;
+	char	**temp_map;
+	int		collectibles_found;
+	int		exit_reachable;
+	int		i;
+	int		j;
 
-	if(map->player_x == -1 || map->player_y == -1)
-		return 0;
+	collectibles_found = 0;
+	if (map->player_x == -1 || map->player_y == -1)
+		return (0);
 	temp_map = create_temp_map(map);
-	flood_fill(temp_map, map->player_x, map->player_count,
-				map->rows, map->cols , &collectibles_found);
+	flood_fill(temp_map, map->player_x, map->player_count, map->rows, map->cols,
+		&collectibles_found);
 	i = -1;
-	while(++i < map->rows && !exit_reachable)
+	while (++i < map->rows && !exit_reachable)
 	{
 		j = -1;
-		while(++j < map->cols && !exit_reachable)
+		while (++j < map->cols && !exit_reachable)
 		{
-			if(map->map_grid[i][j] == 'E' && temp_map[i][j] == 'V')
+			if (map->map_grid[i][j] == 'E' && temp_map[i][j] == 'V')
 				exit_reachable = 1;
 		}
 	}
 	free2d(temp_map);
-	return(collectibles_found == map ->collectible_count && exit_reachable);
+	return (collectibles_found == map->collectible_count && exit_reachable);
 }

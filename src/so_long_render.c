@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:08:48 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/08 21:07:57 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:17:34 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	draw_sprite_at_cords(t_so_long *game, mlx_image_t *sprite, int map_x,
 	calculate_map_offset(game, &offset_x, &offset_y);
 	start_x = offset_x + (map_x * TILE_SIZE);
 	start_y = offset_y + (map_y * TILE_SIZE);
-
 	if (mlx_image_to_window(game->mlx, sprite, start_x, start_y) < 0)
 	{
-		printf("Error: Failed to render sprite at position (%d, %d)\n", map_x, map_y);
+		printf("Error: Failed to render sprite at position (%d, %d)\n", map_x,
+			map_y);
 	}
 }

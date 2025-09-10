@@ -6,13 +6,13 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:14:38 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/08 21:09:10 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:17:07 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void init_game_default(t_so_long *game)
+void	init_game_default(t_so_long *game)
 {
 	game->collected = 0;
 	game->moves = 0;
@@ -44,16 +44,16 @@ void	clear_image_black(t_so_long *game)
 	}
 }
 
-void print_game_info(t_so_long *game)
+void	print_game_info(t_so_long *game)
 {
 	printf("`.......                        `..                                   `..                 \n"
-		   "`..    `..                      `..                                   `..                 \n"
-		   "`..    `..`..  `..   `..        `..`.. `..  `..     `..   `..         `..   `..    `. `...\n"
-		   "`.......  `..  `.. `..  `..     `.. `..  `.. `..   `..  `..  `..  `.. `.. `.   `..  `..   \n"
-		   "`..       `..  `..`..   `..     `.. `..  `..  `.. `..  `..   `.. `.   `..`..... `.. `..   \n"
-		   "`..       `..  `.. `..  `..     `.. `..  `..   `.`..   `..   `.. `.   `..`.         `..   \n"
-		   "`..         `..`..     `..      `..`...  `..    `..      `.. `... `.. `..  `....   `...   \n"
-		   "                    `..                                                                  \n");
+			"`..    `..                      `..                                   `..                 \n"
+			"`..    `..`..  `..   `..        `..`.. `..  `..     `..   `..         `..   `..    `. `...\n"
+			"`.......  `..  `.. `..  `..     `.. `..  `.. `..   `..  `..  `..  `.. `.. `.   `..  `..   \n"
+			"`..       `..  `..`..   `..     `.. `..  `..  `.. `..  `..   `.. `.   `..`..... `.. `..   \n"
+			"`..       `..  `.. `..  `..     `.. `..  `..   `.`..   `..   `.. `.   `..`.         `..   \n"
+			"`..         `..`..     `..      `..`...  `..    `..      `.. `... `.. `..  `....   `...   \n"
+			"                    `..                                                                  \n");
 	printf("Map size: %dx%d\n", game->map->cols, game->map->rows);
 	printf("Player at: (%d, %d)\n", game->map->player_x, game->map->player_y);
 	printf("Collectibles: %d\n", game->map->collectible_count);
@@ -62,7 +62,7 @@ void print_game_info(t_so_long *game)
 
 void	display_image(t_so_long *game)
 {
-	if(mlx_image_to_window(game->mlx,game->image,0,0) == -1)
+	if (mlx_image_to_window(game->mlx, game->image, 0, 0) == -1)
 	{
 		free_map(game->map);
 		mlx_close_window(game->mlx);

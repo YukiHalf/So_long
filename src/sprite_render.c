@@ -6,12 +6,11 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:26:41 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/08 21:08:29 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/10 21:17:47 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-
 
 void	render_background(t_so_long *game)
 {
