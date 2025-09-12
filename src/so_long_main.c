@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:41:15 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:19 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:24:09 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 {
 	t_so_long	*so_long;
 
-	if (!ValidFilename(argv[1]) || argc != 2)
+	if (!valid_filename(argv[1]) || argc != 2)
 		display_error(FORMAT, 1);
 	so_long = init_so_long(argv[1]);
 	setup_game(so_long);

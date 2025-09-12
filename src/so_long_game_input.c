@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:39:49 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:11 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:23:41 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	handle_good_move(t_so_long *game)
 		handle_quit_input(game);
 	}
 }
+
 void	handle_movement_input(mlx_key_data_t keydata, t_so_long *game)
 {
 	int	new_x;

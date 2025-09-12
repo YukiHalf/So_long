@@ -6,23 +6,29 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 16:36:51 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:29 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:43:32 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	flood_fill(char **temp_map, int x, int y, int rows, int cols,
-		int *collectibles_found)
+void	fill_data_flood(t_flood_data *flood_data, t_map *map)
 {
-	if (x < 0 || x >= cols || y < 0 || y >= rows || temp_map[y][x] == '1'
-		|| temp_map[y][x] == 'V')
+	flood_data->temp_map = create_temp_map(map);
+	flood_data->rows = map->rows;
+	flood_data->cols = map->cols;
+}
+
+void	flood_fill(t_flood_data *data, int x, int y, int *collectibles_found)
+{
+	if (x < 0 || x >= data->cols || y < 0 || y >= data->rows
+		|| data->temp_map[y][x] == '1' || data->temp_map[y][x] == 'V')
 		return ;
-	if (temp_map[y][x] == 'C')
-		(*collectibles_found)++;
-	temp_map[y][x] = 'V';
-	flood_fill(temp_map, x + 1, y, rows, cols, collectibles_found);
-	flood_fill(temp_map, x - 1, y, rows, cols, collectibles_found);
-	flood_fill(temp_map, x, y + 1, rows, cols, collectibles_found);
-	flood_fill(temp_map, x, y - 1, rows, cols, collectibles_found);
+	if (data->temp_map[y][x] == 'C')
+		(*(collectibles_found))++;
+	data->temp_map[y][x] = 'V';
+	flood_fill(data, x + 1, y, collectibles_found);
+	flood_fill(data, x - 1, y, collectibles_found);
+	flood_fill(data, x, y + 1, collectibles_found);
+	flood_fill(data, x, y - 1, collectibles_found);
 }

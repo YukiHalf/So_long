@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:08:48 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:34 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:23:25 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	calculate_map_offset(t_so_long *game, int *offset_x, int *offset_y)
 	int	game_img_height;
 	int	game_img_width;
 
-	game_img_height = game->map->rows * TILE_SIZE;
-	game_img_width = game->map->cols * TILE_SIZE;
+	game_img_height = game->map->rows * IMG_PXL;
+	game_img_width = game->map->cols * IMG_PXL;
 	*offset_x = (WIDTH - game_img_width) / 2;
 	*offset_y = (HEIGHT - game_img_height) / 2;
 	if (*offset_x < 0)
@@ -66,8 +66,8 @@ void	draw_sprite_at_cords(t_so_long *game, mlx_image_t *sprite, int map_x,
 	if (!sprite)
 		return ;
 	calculate_map_offset(game, &offset_x, &offset_y);
-	start_x = offset_x + (map_x * TILE_SIZE);
-	start_y = offset_y + (map_y * TILE_SIZE);
+	start_x = offset_x + (map_x * IMG_PXL);
+	start_y = offset_y + (map_y * IMG_PXL);
 	if (mlx_image_to_window(game->mlx, sprite, start_x, start_y) < 0)
 	{
 		printf("Error: Failed to render sprite at position (%d, %d)\n", map_x,

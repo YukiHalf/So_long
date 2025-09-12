@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:42:31 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:25 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:24:31 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parse_map(int fd, t_map *map)
 		j = 0;
 		while (line[j] && line[j] != '\n')
 		{
-			if (!ValidElements(line[j]))
+			if (!valid_elements(line[j]))
 				display_error(INVALID_MAP, 1);
 			if (line[j] != ' ')
 			{

@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:14:38 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:07 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:19:33 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,7 @@ void	clear_image_black(t_so_long *game)
 
 void	print_game_info(t_so_long *game)
 {
-	printf("`.......                        `..                                   `..                 \n"
-			"`..    `..                      `..                                   `..                 \n"
-			"`..    `..`..  `..   `..        `..`.. `..  `..     `..   `..         `..   `..    `. `...\n"
-			"`.......  `..  `.. `..  `..     `.. `..  `.. `..   `..  `..  `..  `.. `.. `.   `..  `..   \n"
-			"`..       `..  `..`..   `..     `.. `..  `..  `.. `..  `..   `.. `.   `..`..... `.. `..   \n"
-			"`..       `..  `.. `..  `..     `.. `..  `..   `.`..   `..   `.. `.   `..`.         `..   \n"
-			"`..         `..`..     `..      `..`...  `..    `..      `.. `... `.. `..  `....   `...   \n"
-			"                    `..                                                                  \n");
+	printf("Don't Crack");
 	printf("Map size: %dx%d\n", game->map->cols, game->map->rows);
 	printf("Player at: (%d, %d)\n", game->map->player_x, game->map->player_y);
 	printf("Collectibles: %d\n", game->map->collectible_count);

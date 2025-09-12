@@ -6,7 +6,7 @@
 #    By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 17:39:17 by sdarius-          #+#    #+#              #
-#    Updated: 2025/09/07 16:20:40 by sdarius-         ###   ########.fr        #
+#    Updated: 2025/09/11 21:23:55 by sdarius-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(MLX_DIR):
 	git clone https://github.com/codam-coding-college/MLX42.git $@;
 
 $(LIBFT_DIR):
-	./lib/libft
+	git clone https://github.com/YukiHalf/42_libft.git $@;
 
 $(OBJ_DIR):
 	mkdir obj
@@ -75,9 +75,8 @@ clean:
 fclean: clean
 	rm $(NAME)
 	rmdir $(OBJ_DIR)
-	rm -rf $(LIBFT_DIR)
 	rm -rf $(MLX_DIR)
-
+	rm -rf $(LIBFT_DIR)
 re: fclean all
 
 .PHONY: all, clean, fclean, re

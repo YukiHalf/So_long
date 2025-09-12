@@ -6,13 +6,13 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:54:09 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:42 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:18:11 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	ValidFilename(char *filename)
+int	valid_filename(char *filename)
 {
 	int	len;
 
@@ -24,7 +24,7 @@ int	ValidFilename(char *filename)
 	return (ft_strncmp(filename + len - 4, ".ber", 4) == 0);
 }
 
-int	ValidElements(char c)
+int	valid_elements(char c)
 {
 	if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P')
 		return (0);

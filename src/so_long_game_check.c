@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:04 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:45:35 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,28 +85,27 @@ char	**create_temp_map(t_map *map)
 
 int	path_check(t_map *map)
 {
-	char	**temp_map;
-	int		collectibles_found;
-	int		exit_reachable;
-	int		i;
-	int		j;
+	t_flood_data	flood_data;
+	int				collectibles_found;
+	int				exit_reachable;
+	int				i;
+	int				j;
 
 	collectibles_found = 0;
 	if (map->player_x == -1 || map->player_y == -1)
 		return (0);
-	temp_map = create_temp_map(map);
-	flood_fill(temp_map, map->player_x, map->player_count, map->rows, map->cols,
-		&collectibles_found);
+	fill_data_flood(&flood_data, map);
+	flood_fill(&flood_data, map->player_x, map->player_y, &collectibles_found);
 	i = -1;
 	while (++i < map->rows && !exit_reachable)
 	{
 		j = -1;
 		while (++j < map->cols && !exit_reachable)
 		{
-			if (map->map_grid[i][j] == 'E' && temp_map[i][j] == 'V')
+			if (map->map_grid[i][j] == 'E' && flood_data.temp_map[i][j] == 'V')
 				exit_reachable = 1;
 		}
 	}
-	free2d(temp_map);
+	free2d(flood_data.temp_map);
 	return (collectibles_found == map->collectible_count && exit_reachable);
 }
