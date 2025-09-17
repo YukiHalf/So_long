@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 21:21:24 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/12 18:41:33 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:56:21 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MALLOC "Malloc failed"
 # define INVALID_FILE "Filename is invalid"
 # define INVALID_MAP "Map is invalid"
-# define FORMAT "Format:\n\t./fdf maps/filename.ber"
+# define FORMAT "Format:\n\t./so_long maps/filename.ber"
 # define FILE_ERROR "Unable to open file"
 
 # define IMG_PXL 32
