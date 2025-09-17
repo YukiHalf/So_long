@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 15:42:02 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:15 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:06:14 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	clear_player_sprites(t_so_long *game)
 
 void	initial_render(t_so_long *game)
 {
-	printf("Initial rendering...\n");
 	render_background(game);
 	render_game_objects(game);
 	render_player_only(game);
@@ -71,7 +70,6 @@ void	render_exits_only(t_so_long *game)
 
 void	render_game(t_so_long *game)
 {
-	printf("Rendering game...\n");
 	clear_sprite_instances((mlx_image_t *)game->sprites.collectible);
 	render_collectibles_only(game);
 	clear_sprite_instances((mlx_image_t *)game->sprites.exit);

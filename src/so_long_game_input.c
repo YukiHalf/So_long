@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:39:49 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/11 17:23:41 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:27:53 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,26 @@ int	get_new_position(mlx_key_data_t keydata, int *new_x, int *new_y,
 void	handle_quit_input(t_so_long *game)
 {
 	if (game->game_won == 0)
-		printf("Game quit by user\n");
+		ft_putstr_fd("Game quit by user\n", 1);
 	mlx_close_window(game->mlx);
 }
 
 void	handle_good_move(t_so_long *game)
 {
 	game->moves++;
-	printf("Moves : %d | Collected : %d/%d\n", game->moves, game->collected,
-		game->map->collectible_count);
+	ft_putstr_fd("Moves : ", 1);
+	ft_putnbr_fd(game->moves, 1);
+	ft_putstr_fd(" | Collected : ", 1);
+	ft_putnbr_fd(game->collected, 1);
+	ft_putchar_fd('/', 1);
+	ft_putnbr_fd(game->map->collectible_count, 1);
+	ft_putendl_fd(".", 1);
 	render_game(game);
 	if (game->game_won)
 	{
-		printf("you won in %d moves!\n", game->moves);
+		ft_putstr_fd("you won in ", 1);
+		ft_putnbr_fd(game->moves, 1);
+		ft_putstr_fd(",moves", 1);
 		handle_quit_input(game);
 	}
 }
@@ -73,7 +80,6 @@ void	handle_input(mlx_key_data_t keydata, void *param)
 {
 	t_so_long	*game;
 
-	printf("Key pressed: %d\n", keydata.key);
 	game = (t_so_long *)param;
 	if (keydata.action != MLX_PRESS)
 		return ;

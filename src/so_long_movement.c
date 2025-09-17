@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:55:12 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/10 21:17:22 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:26:19 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	collect_item(t_so_long *game, int x, int y)
 	{
 		game->collected++;
 		game->map->map_grid[y][x] = '0';
-		printf("Treat collected (%d/%d)\n", game->collected,
-			game->map->collectible_count);
 	}
 }
 
@@ -39,8 +37,7 @@ int	try_exit(t_so_long *game)
 		game->game_won = 1;
 		return (1);
 	}
-	printf("🚪 Need all items! (%d/%d)\n", game->collected,
-		game->map->collectible_count);
+	ft_putstr_fd("🚪 Need all items!\n", 1);
 	return (0);
 }
 
@@ -56,7 +53,6 @@ int	move_player(t_so_long *game, int new_x, int new_y)
 {
 	char	target;
 
-	printf("Attempting move to (%d, %d)\n", new_x, new_y);
 	target = game->map->map_grid[new_y][new_x];
 	if (!is_valid_position(game, new_x, new_y))
 		return (0);

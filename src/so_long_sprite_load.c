@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:02:45 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/08 21:01:32 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:21:08 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ void	*load_png_safe(mlx_t *mlx, char *path)
 
 	texture = mlx_load_png(path);
 	if (!texture)
-	{
-		printf("Error: Failed to load PNG file %s\n", path);
 		return (NULL);
-	}
 	img = mlx_texture_to_image(mlx, texture);
 	if (!img)
 	{
-		printf("Error: Failed to convert texture to image for %s\n", path);
+		display_error("Error: Failed to convert texture to image", 1);
 		mlx_delete_texture(texture);
 		return (NULL);
 	}
@@ -98,19 +95,9 @@ int	validate_all_sprites(t_so_long *game)
 void	load_sprites(t_so_long *game)
 {
 	if (!load_basic_sprites(game))
-	{
-		printf("Error: Failed to load basic sprites\n");
-		exit(1);
-	}
+		display_error("Error: Failed to load basic sprites\n", 1);
 	if (!load_special_sprites(game))
-	{
-		printf("Error: Failed to load special sprites\n");
-		exit(1);
-	}
+		display_error("Error: Failed to load special sprites\n", 1);
 	if (!validate_all_sprites(game))
-	{
-		printf("Error: Some sprites failed to load\n");
-		exit(1);
-	}
-	printf("✅ All sprites loaded successfully!\n");
+		display_error("Error: Some sprites failed to load\n", 1);
 }

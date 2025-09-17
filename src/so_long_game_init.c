@@ -6,7 +6,7 @@
 /*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:14:38 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/11 21:19:33 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 20:20:44 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ void	clear_image_black(t_so_long *game)
 
 void	print_game_info(t_so_long *game)
 {
-	printf("Don't Crack");
-	printf("Map size: %dx%d\n", game->map->cols, game->map->rows);
-	printf("Player at: (%d, %d)\n", game->map->player_x, game->map->player_y);
-	printf("Collectibles: %d\n", game->map->collectible_count);
-	printf("Controls: WASD or Arrow Keys, ESC to quit\n");
+	ft_putstr_fd("Don't Crack", 1);
+	ft_putstr_fd("Collectibles: ", 1);
+	ft_putnbr_fd(game->map->collectible_count, 1);
+	ft_putstr_fd("\nControls: WASD or Arrow Keys, ESC to quit\n", 1);
 }
 
 void	display_image(t_so_long *game)
