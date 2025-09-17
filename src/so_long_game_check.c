@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_game_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/12 18:45:35 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 21:28:32 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**create_temp_map(t_map *map)
 	int		i;
 	int		j;
 
-	temp_map = malloc(sizeof(char *) * map->rows);
+	temp_map = malloc(sizeof(char *) * (map->rows + 1));
 	if (!temp_map)
 		display_error(MALLOC, 1);
 	i = -1;
@@ -78,8 +78,9 @@ char	**create_temp_map(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 			temp_map[i][j] = map->map_grid[i][j];
-		temp_map[i][j] = '0';
+		temp_map[i][j] = '\0';
 	}
+	temp_map[map -> rows] = NULL;
 	return (temp_map);
 }
 

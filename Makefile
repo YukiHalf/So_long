@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 17:39:17 by sdarius-          #+#    #+#              #
-#    Updated: 2025/09/11 21:23:55 by sdarius-         ###   ########.fr        #
+#    Updated: 2025/09/17 21:18:10 by sdarius-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ clean:
 	make clean -C$(LIBFT_DIR)
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 	rmdir $(OBJ_DIR)
 	rm -rf $(MLX_DIR)
 	rm -rf $(LIBFT_DIR)
