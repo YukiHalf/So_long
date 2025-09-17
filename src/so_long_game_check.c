@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_game_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdarius- <sdarius-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sdarius- <sdarius-@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 17:52:54 by sdarius-          #+#    #+#             */
-/*   Updated: 2025/09/17 21:28:32 by sdarius-         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:53:59 by sdarius-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	path_check(t_map *map)
 	int				j;
 
 	collectibles_found = 0;
+	exit_reachable = 0;
 	if (map->player_x == -1 || map->player_y == -1)
 		return (0);
 	fill_data_flood(&flood_data, map);
